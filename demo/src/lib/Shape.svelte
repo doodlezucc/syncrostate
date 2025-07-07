@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { Image as KonvaImage } from 'svelte-konva';
-	import { createImage, createRect } from './canvas.svelte';
+	import { createImage } from './canvas.svelte';
+
+	export type ShapeType = 'circle' | 'rect';
 
 	let {
 		node = $bindable()
 	}: {
 		node: {
-			type: 'circle' | 'rect';
+			type: ShapeType;
 			x: number;
 			y: number;
 			fill: string;

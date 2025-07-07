@@ -32,10 +32,13 @@
 </script>
 
 <script lang="ts">
-	import { Stage, Layer } from 'svelte-konva';
+	import { createClient } from '@liveblocks/client';
+	import { LiveblocksYjsProvider } from '@liveblocks/yjs';
 	import { Stage as KStage } from 'konva/lib/Stage';
 	import rough from 'roughjs';
-	import Shape from './Shape.svelte';
+	import { Layer, Stage } from 'svelte-konva';
+	import { syncroState, y } from 'syncrostate';
+	import Shape, { type ShapeType } from './Shape.svelte';
 
 	const circle = (svg: SVGSVGElement) => {
 		svg.appendChild(createCircle(svg, 40));
@@ -46,10 +49,8 @@
 	};
 
 	let stageRef = $state<KStage>();
-	let draggedShape = $state();
-	import { createClient } from '@liveblocks/client';
-	import { LiveblocksYjsProvider } from '@liveblocks/yjs';
-	import { syncroState, y } from 'syncrostate';
+	let draggedShape = $state<ShapeType>();
+
 	let users = $state(1);
 	const client = createClient({
 		publicApiKey: 'pk_prod_ytItHgLSil9pFkJELGPI7yWptk_jNMifKfv3JhWODRGX2vK3hrt-3oNzDkrc1kcx'
@@ -92,15 +93,15 @@
 			e.preventDefault();
 			// register event position
 			stageRef.setPointersPositions(e);
-			var pointerPosition = stageRef.getPointerPosition();
+			var pointerPosition = stageRef.getPointerPosition()!;
 			var stageAttrs = stageRef.attrs;
 
 			var x = (pointerPosition.x - stageAttrs.x) / (stageAttrs.scaleX || 1);
 			var y = (pointerPosition.y - stageAttrs.y) / (stageAttrs.scaleY || 1);
 			document.nodes.push({
-				type: draggedShape,
-				x: isNaN(x) ? stageRef.getPointerPosition().x : x,
-				y: isNaN(y) ? stageRef.getPointerPosition().y : y,
+				type: draggedShape!,
+				x: isNaN(x) ? pointerPosition.x : x,
+				y: isNaN(y) ? pointerPosition.y : y,
 				fill: 'red'
 			});
 		}}
@@ -113,7 +114,7 @@
 				role="button"
 				tabindex="0"
 				class="cursor-grab"
-				ondragstart={(e) => (draggedShape = 'circle')}
+				ondragstart={() => (draggedShape = 'circle')}
 			>
 				<svg class="h-10 w-10" viewBox="0 0 40 40" use:circle> </svg>
 			</div>
@@ -122,7 +123,7 @@
 				tabindex="0"
 				role="button"
 				class="cursor-grab"
-				ondragstart={(e) => (draggedShape = 'rect')}
+				ondragstart={() => (draggedShape = 'rect')}
 			>
 				<svg class="h-10 w-10" viewBox="0 0 40 40" use:rect> </svg>
 			</div>
@@ -136,12 +137,15 @@
 		</div>
 
 		<Stage
-			onwheel={(e) => {
+			onwheel={(e: WheelEvent) => {
+				if (!stageRef) return;
 				// stop default scrolling
 				e.preventDefault();
 
 				var oldScale = stageRef.scaleX();
 				var pointer = stageRef.getPointerPosition();
+
+				if (!pointer) return;
 
 				var mousePointTo = {
 					x: (pointer.x - stageRef.x()) / oldScale,
