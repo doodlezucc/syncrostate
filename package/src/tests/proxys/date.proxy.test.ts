@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
 const defaultDate = new Date('2024-01-01');
@@ -68,26 +68,31 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.date = null;
 				expect(state.date.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.date = undefined;
 				expect(state.date.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.date = '2024-03-01';
 				expect(state.date.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.date = 123;
 				expect(state.date.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.date = {};
 				expect(state.date.toISOString()).toEqual(testDate.toISOString());
 			});
@@ -178,22 +183,26 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.nullableDate = undefined;
 				expect(state.nullableDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a string', () => {
-				state.nullableDate = '2024-03-01' as any;
+				// @ts-expect-error
+				state.nullableDate = '2024-03-01';
 				expect(state.nullableDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
-				state.nullableDate = 123 as any;
+				// @ts-expect-error
+				state.nullableDate = 123;
 				expect(state.nullableDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
-				state.nullableDate = {} as any;
+				// @ts-expect-error
+				state.nullableDate = {};
 				expect(state.nullableDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 		});
@@ -210,6 +219,7 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.optionnalDate = null;
 				expect(state.optionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
@@ -220,17 +230,20 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				state.optionnalDate = '2024-03-01' as any;
+				// @ts-expect-error
+				state.optionnalDate = '2024-03-01';
 				expect(state.optionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
-				state.optionnalDate = 123 as any;
+				// @ts-expect-error
+				state.optionnalDate = 123;
 				expect(state.optionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
-				state.optionnalDate = {} as any;
+				// @ts-expect-error
+				state.optionnalDate = {};
 				expect(state.optionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 		});
@@ -257,17 +270,20 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				state.nullableOptionnalDate = '2024-03-01' as any;
+				// @ts-expect-error
+				state.nullableOptionnalDate = '2024-03-01';
 				expect(state.nullableOptionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
-				state.nullableOptionnalDate = 123 as any;
+				// @ts-expect-error
+				state.nullableOptionnalDate = 123;
 				expect(state.nullableOptionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
-				state.nullableOptionnalDate = {} as any;
+				// @ts-expect-error
+				state.nullableOptionnalDate = {};
 				expect(state.nullableOptionnalDate?.toISOString()).toEqual(testDate.toISOString());
 			});
 		});
@@ -284,27 +300,32 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.dateWithDefault = null;
 				expect(state.dateWithDefault?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.dateWithDefault = undefined;
 				expect(state.dateWithDefault?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a string', () => {
-				state.dateWithDefault = '2024-03-01' as any;
+				// @ts-expect-error
+				state.dateWithDefault = '2024-03-01';
 				expect(state.dateWithDefault.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
-				state.dateWithDefault = 123 as any;
+				// @ts-expect-error
+				state.dateWithDefault = 123;
 				expect(state.dateWithDefault.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
-				state.dateWithDefault = {} as any;
+				// @ts-expect-error
+				state.dateWithDefault = {};
 				expect(state.dateWithDefault.toISOString()).toEqual(testDate.toISOString());
 			});
 		});
@@ -321,6 +342,7 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.dateWithDefaultAndOptional = null;
 				expect(state.dateWithDefaultAndOptional?.toISOString()).toEqual(testDate.toISOString());
 			});
@@ -331,17 +353,20 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				state.dateWithDefaultAndOptional = '2024-03-01' as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndOptional = '2024-03-01';
 				expect(state.dateWithDefaultAndOptional?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
-				state.dateWithDefaultAndOptional = 123 as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndOptional = 123;
 				expect(state.dateWithDefaultAndOptional?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
-				state.dateWithDefaultAndOptional = {} as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndOptional = {};
 				expect(state.dateWithDefaultAndOptional?.toISOString()).toEqual(testDate.toISOString());
 			});
 		});
@@ -363,22 +388,26 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.dateWithDefaultAndNullable = undefined;
 				expect(state.dateWithDefaultAndNullable?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a string', () => {
-				state.dateWithDefaultAndNullable = '2024-03-01' as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndNullable = '2024-03-01';
 				expect(state.dateWithDefaultAndNullable?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to a number', () => {
-				state.dateWithDefaultAndNullable = 123 as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndNullable = 123;
 				expect(state.dateWithDefaultAndNullable?.toISOString()).toEqual(testDate.toISOString());
 			});
 
 			it('should not set the value to an object', () => {
-				state.dateWithDefaultAndNullable = {} as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndNullable = {};
 				expect(state.dateWithDefaultAndNullable?.toISOString()).toEqual(testDate.toISOString());
 			});
 		});
@@ -407,21 +436,24 @@ describe('DateProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				state.dateWithDefaultAndNullableAndOptional = '2024-03-01' as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndNullableAndOptional = '2024-03-01';
 				expect(state.dateWithDefaultAndNullableAndOptional?.toISOString()).toEqual(
 					testDate.toISOString()
 				);
 			});
 
 			it('should not set the value to a number', () => {
-				state.dateWithDefaultAndNullableAndOptional = 123 as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndNullableAndOptional = 123;
 				expect(state.dateWithDefaultAndNullableAndOptional?.toISOString()).toEqual(
 					testDate.toISOString()
 				);
 			});
 
 			it('should not set the value to an object', () => {
-				state.dateWithDefaultAndNullableAndOptional = {} as any;
+				// @ts-expect-error
+				state.dateWithDefaultAndNullableAndOptional = {};
 				expect(state.dateWithDefaultAndNullableAndOptional?.toISOString()).toEqual(
 					testDate.toISOString()
 				);

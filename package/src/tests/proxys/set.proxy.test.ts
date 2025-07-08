@@ -1,8 +1,8 @@
-import { describe, it, expect, beforeEach, beforeAll } from 'vitest';
-import { syncroState, y } from '../../lib/index.js';
 import { SvelteSet } from 'svelte/reactivity';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { syncroState, y } from '../../lib/index.js';
 
-let createDocument = () =>
+const createDocument = () =>
 	syncroState({
 		schema: {
 			set: y.set(y.string()),
@@ -26,7 +26,7 @@ let createDocument = () =>
 		}
 	});
 
-let state = createDocument();
+const state = createDocument();
 
 describe('SetProxy', () => {
 	describe('Initial values', () => {
@@ -178,23 +178,27 @@ describe('SetProxy', () => {
 			// });
 
 			it('should not set the value to null', () => {
-				(state.optionalSet as any) = null;
+				// @ts-expect-error
+				state.optionalSet = null;
 				console.log('state.optionalSet', state.optionalSet);
 				expect(Array.from(state.optionalSet)).toEqual(['test']);
 			});
 
 			it('should not set the value to a string', () => {
-				(state.optionalSet as any) = 'invalid';
+				// @ts-expect-error
+				state.optionalSet = 'invalid';
 				expect(Array.from(state.optionalSet)).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.optionalSet as any) = 123;
+				// @ts-expect-error
+				state.optionalSet = 123;
 				expect(Array.from(state.optionalSet)).toEqual(['test']);
 			});
 
 			it('should not set invalid set items', () => {
-				(state.optionalSet as any) = new Set([123, true, {}]);
+				// @ts-expect-error
+				state.optionalSet = new Set([123, true, {}]);
 				expect(Array.from(state.optionalSet)).toEqual(['test']);
 			});
 		});
@@ -214,6 +218,7 @@ describe('SetProxy', () => {
 			});
 
 			it('should set the value to null', () => {
+				// @ts-expect-error
 				state.nullableOptionalSet = null;
 				expect(state.nullableOptionalSet).toBe(null);
 			});
@@ -224,17 +229,20 @@ describe('SetProxy', () => {
 			// });
 
 			it('should not set the value to a string', () => {
-				(state.nullableOptionalSet as any) = 'invalid';
+				// @ts-expect-error
+				state.nullableOptionalSet = 'invalid';
 				expect(Array.from(state.nullableOptionalSet)).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.nullableOptionalSet as any) = 123;
+				// @ts-expect-error
+				state.nullableOptionalSet = 123;
 				expect(Array.from(state.nullableOptionalSet)).toEqual(['test']);
 			});
 
 			it('should not set invalid set items', () => {
-				(state.nullableOptionalSet as any) = new Set([123, true, {}]);
+				// @ts-expect-error
+				state.nullableOptionalSet = new Set([123, true, {}]);
 				expect(Array.from(state.nullableOptionalSet)).toEqual(['test']);
 			});
 		});

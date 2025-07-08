@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
 const state = syncroState({
@@ -64,21 +64,25 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.string = null;
 				expect(state.string).toBe('test');
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.string = undefined;
 				expect(state.string).toBe('test');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.string = 123;
 				expect(state.string).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.string = {};
 				expect(state.string).toBe('test');
 			});
@@ -104,16 +108,19 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.nullableString = undefined;
 				expect(state.nullableString).toBe('test');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.nullableString = 123;
 				expect(state.nullableString).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.nullableString = {};
 				expect(state.nullableString).toBe('test');
 			});
@@ -134,6 +141,7 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.optionnalString = null;
 				expect(state.optionnalString).toBe('test');
 			});
@@ -144,11 +152,13 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.optionnalString = 123;
 				expect(state.optionnalString).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.optionnalString = {};
 				expect(state.optionnalString).toBe('test');
 			});
@@ -179,11 +189,13 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.nullableOptionnalString = 123;
 				expect(state.nullableOptionnalString).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.nullableOptionnalString = {};
 				expect(state.nullableOptionnalString).toBe('test');
 			});
@@ -204,21 +216,25 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.stringWithDefault = null;
 				expect(state.stringWithDefault).toBe('test');
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.stringWithDefault = undefined;
 				expect(state.stringWithDefault).toBe('test');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.stringWithDefault = 123;
 				expect(state.stringWithDefault).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.stringWithDefault = {};
 				expect(state.stringWithDefault).toBe('test');
 			});
@@ -239,6 +255,7 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndOptional = null;
 				expect(state.stringWithDefaultAndOptional).toBe('test');
 			});
@@ -249,11 +266,13 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndOptional = 123;
 				expect(state.stringWithDefaultAndOptional).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndOptional = {};
 				expect(state.stringWithDefaultAndOptional).toBe('test');
 			});
@@ -279,16 +298,19 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndNullable = undefined;
 				expect(state.stringWithDefaultAndNullable).toBe('test');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndNullable = 123;
 				expect(state.stringWithDefaultAndNullable).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndNullable = {};
 				expect(state.stringWithDefaultAndNullable).toBe('test');
 			});
@@ -319,11 +341,13 @@ describe('StringProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndNullableAndOptional = 123;
 				expect(state.stringWithDefaultAndNullableAndOptional).toBe('test');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.stringWithDefaultAndNullableAndOptional = {};
 				expect(state.stringWithDefaultAndNullableAndOptional).toBe('test');
 			});

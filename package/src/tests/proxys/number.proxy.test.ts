@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
 const state = syncroState({
@@ -61,26 +61,31 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.number = null;
 				expect(state.number).toBe(42);
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.number = undefined;
 				expect(state.number).toBe(42);
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.number = '123';
 				expect(state.number).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.number = true;
 				expect(state.number).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.number = {};
 				expect(state.number).toBe(42);
 			});
@@ -102,21 +107,25 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.nullableNumber = undefined;
 				expect(state.nullableNumber).toBe(42);
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.nullableNumber = '123';
 				expect(state.nullableNumber).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.nullableNumber = true;
 				expect(state.nullableNumber).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.nullableNumber = {};
 				expect(state.nullableNumber).toBe(42);
 			});
@@ -133,6 +142,7 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.optionnalNumber = null;
 				expect(state.optionnalNumber).toBe(42);
 			});
@@ -143,16 +153,19 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.optionnalNumber = '123';
 				expect(state.optionnalNumber).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.optionnalNumber = true;
 				expect(state.optionnalNumber).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.optionnalNumber = {};
 				expect(state.optionnalNumber).toBe(42);
 			});
@@ -179,16 +192,19 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.nullableOptionnalNumber = '123';
 				expect(state.nullableOptionnalNumber).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.nullableOptionnalNumber = true;
 				expect(state.nullableOptionnalNumber).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.nullableOptionnalNumber = {};
 				expect(state.nullableOptionnalNumber).toBe(42);
 			});
@@ -205,26 +221,31 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.numberWithDefault = null;
 				expect(state.numberWithDefault).toBe(42);
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.numberWithDefault = undefined;
 				expect(state.numberWithDefault).toBe(42);
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.numberWithDefault = '123';
 				expect(state.numberWithDefault).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.numberWithDefault = true;
 				expect(state.numberWithDefault).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.numberWithDefault = {};
 				expect(state.numberWithDefault).toBe(42);
 			});
@@ -241,6 +262,7 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndOptional = null;
 				expect(state.numberWithDefaultAndOptional).toBe(42);
 			});
@@ -251,16 +273,19 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndOptional = '123';
 				expect(state.numberWithDefaultAndOptional).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndOptional = true;
 				expect(state.numberWithDefaultAndOptional).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndOptional = {};
 				expect(state.numberWithDefaultAndOptional).toBe(42);
 			});
@@ -282,21 +307,25 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullable = undefined;
 				expect(state.numberWithDefaultAndNullable).toBe(42);
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullable = '123';
 				expect(state.numberWithDefaultAndNullable).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullable = true;
 				expect(state.numberWithDefaultAndNullable).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullable = {};
 				expect(state.numberWithDefaultAndNullable).toBe(42);
 			});
@@ -323,16 +352,19 @@ describe('NumberProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullableAndOptional = '123';
 				expect(state.numberWithDefaultAndNullableAndOptional).toBe(42);
 			});
 
 			it('should not set the value to a boolean', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullableAndOptional = true;
 				expect(state.numberWithDefaultAndNullableAndOptional).toBe(42);
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.numberWithDefaultAndNullableAndOptional = {};
 				expect(state.numberWithDefaultAndNullableAndOptional).toBe(42);
 			});

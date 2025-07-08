@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
 type StringMap = Map<string, string>;
@@ -96,9 +96,8 @@ describe('MapProxy', () => {
 				// Test invalid primitive values
 				const invalidValues = [null, undefined, 'invalid', 123, true, {}];
 				for (const value of invalidValues) {
-					try {
-						(state.map as any) = value;
-					} catch {}
+					// @ts-expect-error
+					expect(() => (state.map = value)).toThrow('error message');
 					expect(Array.from(state.map.entries())).toEqual(initialValue);
 				}
 
@@ -107,9 +106,8 @@ describe('MapProxy', () => {
 				invalidMapValue.set('key1', 123);
 				invalidMapValue.set('key2', true);
 
-				try {
-					(state.map as any) = invalidMapValue;
-				} catch {}
+				// @ts-expect-error
+				expect(() => (state.map = invalidMapValue)).toThrow('error message');
 				expect(Array.from(state.map.entries())).toEqual(initialValue);
 			});
 
@@ -142,7 +140,7 @@ describe('MapProxy', () => {
 			});
 
 			it('should set the value to null', () => {
-				(state.nullableMap as any) = null;
+				state.nullableMap = null;
 				expect(state.nullableMap).toBe(null);
 			});
 
@@ -152,9 +150,8 @@ describe('MapProxy', () => {
 				// Test invalid primitive values
 				const invalidValues = [undefined, 'invalid', 123, true, {}];
 				for (const value of invalidValues) {
-					try {
-						(state.nullableMap as any) = value;
-					} catch {}
+					// @ts-expect-error
+					expect(() => (state.nullableMap = value)).toThrow('error message');
 					expect(Array.from(state.nullableMap!.entries())).toEqual(initialValue);
 				}
 
@@ -163,9 +160,8 @@ describe('MapProxy', () => {
 				invalidMapValue.set('key1', 123);
 				invalidMapValue.set('key2', true);
 
-				try {
-					(state.nullableMap as any) = invalidMapValue;
-				} catch {}
+				// @ts-expect-error
+				expect(() => (state.nullableMap = invalidMapValue)).toThrow('error message');
 				expect(Array.from(state.nullableMap!.entries())).toEqual(initialValue);
 			});
 		});
@@ -187,7 +183,7 @@ describe('MapProxy', () => {
 			});
 
 			it('should set the value to undefined', () => {
-				(state.optionalMap as any) = undefined;
+				state.optionalMap = undefined;
 				expect(state.optionalMap).toBe(undefined);
 			});
 
@@ -197,9 +193,8 @@ describe('MapProxy', () => {
 				// Test invalid primitive values
 				const invalidValues = [null, 'invalid', 123, true, {}];
 				for (const value of invalidValues) {
-					try {
-						(state.optionalMap as any) = value;
-					} catch {}
+					// @ts-expect-error
+					expect(() => (state.optionalMap = value)).toThrow('error message');
 					expect(Array.from(state.optionalMap!.entries())).toEqual(initialValue);
 				}
 
@@ -208,9 +203,8 @@ describe('MapProxy', () => {
 				invalidMapValue.set('key1', 123);
 				invalidMapValue.set('key2', true);
 
-				try {
-					(state.optionalMap as any) = invalidMapValue;
-				} catch {}
+				// @ts-expect-error
+				expect(() => (state.optionalMap = invalidMapValue)).toThrow('error message');
 				expect(Array.from(state.optionalMap!.entries())).toEqual(initialValue);
 			});
 		});
@@ -232,12 +226,12 @@ describe('MapProxy', () => {
 			});
 
 			it('should set the value to null', () => {
-				(state.nullableOptionalMap as any) = null;
+				state.nullableOptionalMap = null;
 				expect(state.nullableOptionalMap).toBe(null);
 			});
 
 			it('should set the value to undefined', () => {
-				(state.nullableOptionalMap as any) = undefined;
+				state.nullableOptionalMap = undefined;
 				expect(state.nullableOptionalMap).toBe(undefined);
 			});
 
@@ -247,9 +241,8 @@ describe('MapProxy', () => {
 				// Test invalid primitive values
 				const invalidValues = ['invalid', 123, true, {}];
 				for (const value of invalidValues) {
-					try {
-						(state.nullableOptionalMap as any) = value;
-					} catch {}
+					// @ts-expect-error
+					expect(() => (state.nullableOptionalMap = value)).toThrow('error message');
 					expect(Array.from(state.nullableOptionalMap!.entries())).toEqual(initialValue);
 				}
 
@@ -258,9 +251,8 @@ describe('MapProxy', () => {
 				invalidMapValue.set('key1', 123);
 				invalidMapValue.set('key2', true);
 
-				try {
-					(state.nullableOptionalMap as any) = invalidMapValue;
-				} catch {}
+				// @ts-expect-error
+				expect(() => (state.nullableOptionalMap = invalidMapValue)).toThrow('error message');
 				expect(Array.from(state.nullableOptionalMap!.entries())).toEqual(initialValue);
 			});
 		});
@@ -285,13 +277,12 @@ describe('MapProxy', () => {
 				const initialValue = Array.from(state.mapWithObject.entries());
 
 				// Test invalid map values
-				const invalidMapValue = new Map<string, { name: any; age: any }>();
+				const invalidMapValue = new Map<string, { name: unknown; age: unknown }>();
 				invalidMapValue.set('user1', { name: 123, age: 'invalid' });
 				invalidMapValue.set('user2', { name: 'Jane', age: true });
 
-				try {
-					(state.mapWithObject as any) = invalidMapValue;
-				} catch {}
+				// @ts-expect-error
+				expect(() => (state.mapWithObject = invalidMapValue)).toThrow('error message');
 				expect(Array.from(state.mapWithObject.entries())).toEqual(initialValue);
 			});
 

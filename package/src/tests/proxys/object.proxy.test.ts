@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
 const state = syncroState({
@@ -106,27 +106,32 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.object as any) = null;
+				// @ts-expect-error
+				state.object = null;
 				expect(state.object).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.object as any) = undefined;
+				// @ts-expect-error
+				state.object = undefined;
 				expect(state.object).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a string', () => {
-				(state.object as any) = 'invalid';
+				// @ts-expect-error
+				state.object = 'invalid';
 				expect(state.object).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.object as any) = 123;
+				// @ts-expect-error
+				state.object = 123;
 				expect(state.object).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.object as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.object = { name: 123, age: 'invalid' };
 				expect(state.object).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -147,7 +152,8 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.nullableObject as any) = undefined;
+				// @ts-expect-error
+				state.nullableObject = undefined;
 				expect(JSON.parse(JSON.stringify(state.nullableObject))).toStrictEqual({
 					name: 'test',
 					age: 25
@@ -155,17 +161,20 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.nullableObject as any) = 'invalid';
+				// @ts-expect-error
+				state.nullableObject = 'invalid';
 				expect(state.nullableObject).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.nullableObject as any) = 123;
+				// @ts-expect-error
+				state.nullableObject = 123;
 				expect(state.nullableObject).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.nullableObject as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.nullableObject = { name: 123, age: 'invalid' };
 				expect(state.nullableObject).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -181,7 +190,8 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.optionalObject as any) = null;
+				// @ts-expect-error
+				state.optionalObject = null;
 				expect(state.optionalObject).toEqual({ name: 'test', age: 25 });
 			});
 
@@ -191,17 +201,20 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.optionalObject as any) = 'invalid';
+				// @ts-expect-error
+				state.optionalObject = 'invalid';
 				expect(state.optionalObject).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.optionalObject as any) = 123;
+				// @ts-expect-error
+				state.optionalObject = 123;
 				expect(state.optionalObject).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.optionalObject as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.optionalObject = { name: 123, age: 'invalid' };
 				expect(state.optionalObject).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -227,17 +240,20 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.nullableOptionalObject as any) = 'invalid';
+				// @ts-expect-error
+				state.nullableOptionalObject = 'invalid';
 				expect(state.nullableOptionalObject).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.nullableOptionalObject as any) = 123;
+				// @ts-expect-error
+				state.nullableOptionalObject = 123;
 				expect(state.nullableOptionalObject).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.nullableOptionalObject as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.nullableOptionalObject = { name: 123, age: 'invalid' };
 				expect(state.nullableOptionalObject).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -253,27 +269,32 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.objectWithDefault as any) = null;
+				// @ts-expect-error
+				state.objectWithDefault = null;
 				expect(state.objectWithDefault).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.objectWithDefault as any) = undefined;
+				// @ts-expect-error
+				state.objectWithDefault = undefined;
 				expect(state.objectWithDefault).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a string', () => {
-				(state.objectWithDefault as any) = 'invalid';
+				// @ts-expect-error
+				state.objectWithDefault = 'invalid';
 				expect(state.objectWithDefault).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.objectWithDefault as any) = 123;
+				// @ts-expect-error
+				state.objectWithDefault = 123;
 				expect(state.objectWithDefault).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.objectWithDefault as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.objectWithDefault = { name: 123, age: 'invalid' };
 				expect(state.objectWithDefault).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -289,7 +310,8 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.objectWithDefaultAndOptional as any) = null;
+				// @ts-expect-error
+				state.objectWithDefaultAndOptional = null;
 				expect(state.objectWithDefaultAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 
@@ -299,17 +321,20 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.objectWithDefaultAndOptional as any) = 'invalid';
+				// @ts-expect-error
+				state.objectWithDefaultAndOptional = 'invalid';
 				expect(state.objectWithDefaultAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.objectWithDefaultAndOptional as any) = 123;
+				// @ts-expect-error
+				state.objectWithDefaultAndOptional = 123;
 				expect(state.objectWithDefaultAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.objectWithDefaultAndOptional as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.objectWithDefaultAndOptional = { name: 123, age: 'invalid' };
 				expect(state.objectWithDefaultAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -330,22 +355,26 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.objectWithDefaultAndNullable as any) = undefined;
+				// @ts-expect-error
+				state.objectWithDefaultAndNullable = undefined;
 				expect(state.objectWithDefaultAndNullable).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a string', () => {
-				(state.objectWithDefaultAndNullable as any) = 'invalid';
+				// @ts-expect-error
+				state.objectWithDefaultAndNullable = 'invalid';
 				expect(state.objectWithDefaultAndNullable).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.objectWithDefaultAndNullable as any) = 123;
+				// @ts-expect-error
+				state.objectWithDefaultAndNullable = 123;
 				expect(state.objectWithDefaultAndNullable).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.objectWithDefaultAndNullable as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.objectWithDefaultAndNullable = { name: 123, age: 'invalid' };
 				expect(state.objectWithDefaultAndNullable).toEqual({ name: 'test', age: 25 });
 			});
 		});
@@ -374,17 +403,20 @@ describe('ObjectProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.objectWithDefaultAndNullableAndOptional as any) = 'invalid';
+				// @ts-expect-error
+				state.objectWithDefaultAndNullableAndOptional = 'invalid';
 				expect(state.objectWithDefaultAndNullableAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set the value to a number', () => {
-				(state.objectWithDefaultAndNullableAndOptional as any) = 123;
+				// @ts-expect-error
+				state.objectWithDefaultAndNullableAndOptional = 123;
 				expect(state.objectWithDefaultAndNullableAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 
 			it('should not set invalid object properties', () => {
-				(state.objectWithDefaultAndNullableAndOptional as any) = { name: 123, age: 'invalid' };
+				// @ts-expect-error
+				state.objectWithDefaultAndNullableAndOptional = { name: 123, age: 'invalid' };
 				expect(state.objectWithDefaultAndNullableAndOptional).toEqual({ name: 'test', age: 25 });
 			});
 		});

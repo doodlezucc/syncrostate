@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach, afterEach, test, beforeAll } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it, test } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
-let createDocument = () =>
+const createDocument = () =>
 	syncroState({
 		schema: {
 			array: y.array(y.string()),
@@ -19,7 +19,7 @@ let createDocument = () =>
 		}
 	});
 
-let state = createDocument();
+const state = createDocument();
 
 describe('ArrayProxy', () => {
 	describe('Initial values', () => {
@@ -62,27 +62,32 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.array as any) = null;
+				// @ts-expect-error
+				state.array = null;
 				expect(state.array).toEqual(['test']);
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.array as any) = undefined;
+				// @ts-expect-error
+				state.array = undefined;
 				expect(state.array).toEqual(['test']);
 			});
 
 			it('should not set the value to a string', () => {
-				(state.array as any) = 'invalid';
+				// @ts-expect-error
+				state.array = 'invalid';
 				expect(state.array).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.array as any) = 123;
+				// @ts-expect-error
+				state.array = 123;
 				expect(state.array).toEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.array as any) = [123, true, {}];
+				// @ts-expect-error
+				state.array = [123, true, {}];
 				expect(state.array).toEqual(['test']);
 			});
 
@@ -122,22 +127,26 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.nullableArray as any) = undefined;
+				// @ts-expect-error
+				state.nullableArray = undefined;
 				expect([...state.nullableArray]).toStrictEqual(['test']);
 			});
 
 			it('should not set the value to a string', () => {
-				(state.nullableArray as any) = 'invalid';
+				// @ts-expect-error
+				state.nullableArray = 'invalid';
 				expect([...state.nullableArray]).toStrictEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.nullableArray as any) = 123;
+				// @ts-expect-error
+				state.nullableArray = 123;
 				expect([...state.nullableArray]).toStrictEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.nullableArray as any) = [123, true, {}];
+				// @ts-expect-error
+				state.nullableArray = [123, true, {}];
 				expect([...state.nullableArray]).toStrictEqual(['test']);
 			});
 		});
@@ -161,22 +170,26 @@ describe('ArrayProxy', () => {
 			});
 
 			test('should not set the value to null', () => {
-				(state.optionalArray as any) = null;
+				// @ts-expect-error
+				state.optionalArray = null;
 				expect(state.optionalArray).toEqual(['test']);
 			});
 
 			test('should not set the value to a string', () => {
-				(state.optionalArray as any) = 'invalid';
+				// @ts-expect-error
+				state.optionalArray = 'invalid';
 				expect(state.optionalArray).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.optionalArray as any) = 123;
+				// @ts-expect-error
+				state.optionalArray = 123;
 				expect(state.optionalArray).toEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.optionalArray as any) = [123, true, {}];
+				// @ts-expect-error
+				state.optionalArray = [123, true, {}];
 				expect(state.optionalArray).toEqual(['test']);
 			});
 		});
@@ -202,17 +215,20 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.nullableOptionalArray as any) = 'invalid';
+				// @ts-expect-error
+				state.nullableOptionalArray = 'invalid';
 				expect(state.nullableOptionalArray).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.nullableOptionalArray as any) = 123;
+				// @ts-expect-error
+				state.nullableOptionalArray = 123;
 				expect(state.nullableOptionalArray).toEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.nullableOptionalArray as any) = [123, true, {}];
+				// @ts-expect-error
+				state.nullableOptionalArray = [123, true, {}];
 				expect(state.nullableOptionalArray).toEqual(['test']);
 			});
 		});
@@ -228,27 +244,32 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.arrayWithDefault as any) = null;
+				// @ts-expect-error
+				state.arrayWithDefault = null;
 				expect(state.arrayWithDefault).toEqual(['test']);
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.arrayWithDefault as any) = undefined;
+				// @ts-expect-error
+				state.arrayWithDefault = undefined;
 				expect(state.arrayWithDefault).toEqual(['test']);
 			});
 
 			it('should not set the value to a string', () => {
-				(state.arrayWithDefault as any) = 'invalid';
+				// @ts-expect-error
+				state.arrayWithDefault = 'invalid';
 				expect(state.arrayWithDefault).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.arrayWithDefault as any) = 123;
+				// @ts-expect-error
+				state.arrayWithDefault = 123;
 				expect(state.arrayWithDefault).toEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.arrayWithDefault as any) = [123, true, {}];
+				// @ts-expect-error
+				state.arrayWithDefault = [123, true, {}];
 				expect(state.arrayWithDefault).toEqual(['test']);
 			});
 		});
@@ -264,7 +285,8 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to null', () => {
-				(state.arrayWithDefaultAndOptional as any) = null;
+				// @ts-expect-error
+				state.arrayWithDefaultAndOptional = null;
 				expect(state.arrayWithDefaultAndOptional).toEqual(['test']);
 			});
 
@@ -274,17 +296,20 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.arrayWithDefaultAndOptional as any) = 'invalid';
+				// @ts-expect-error
+				state.arrayWithDefaultAndOptional = 'invalid';
 				expect(state.arrayWithDefaultAndOptional).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.arrayWithDefaultAndOptional as any) = 123;
+				// @ts-expect-error
+				state.arrayWithDefaultAndOptional = 123;
 				expect(state.arrayWithDefaultAndOptional).toEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.arrayWithDefaultAndOptional as any) = [123, true, {}];
+				// @ts-expect-error
+				state.arrayWithDefaultAndOptional = [123, true, {}];
 				expect(state.arrayWithDefaultAndOptional).toEqual(['test']);
 			});
 		});
@@ -305,22 +330,26 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
-				(state.arrayWithDefaultAndNullable as any) = undefined;
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullable = undefined;
 				expect([...state.arrayWithDefaultAndNullable]).toStrictEqual(['test']);
 			});
 
 			it('should not set the value to a string', () => {
-				(state.arrayWithDefaultAndNullable as any) = 'invalid';
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullable = 'invalid';
 				expect([...state.arrayWithDefaultAndNullable]).toStrictEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.arrayWithDefaultAndNullable as any) = 123;
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullable = 123;
 				expect([...state.arrayWithDefaultAndNullable]).toStrictEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.arrayWithDefaultAndNullable as any) = [123, true, {}];
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullable = [123, true, {}];
 				expect([...state.arrayWithDefaultAndNullable]).toStrictEqual(['test']);
 			});
 		});
@@ -346,17 +375,20 @@ describe('ArrayProxy', () => {
 			});
 
 			it('should not set the value to a string', () => {
-				(state.arrayWithDefaultAndNullableAndOptional as any) = 'invalid';
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullableAndOptional = 'invalid';
 				expect(state.arrayWithDefaultAndNullableAndOptional).toEqual(['test']);
 			});
 
 			it('should not set the value to a number', () => {
-				(state.arrayWithDefaultAndNullableAndOptional as any) = 123;
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullableAndOptional = 123;
 				expect(state.arrayWithDefaultAndNullableAndOptional).toEqual(['test']);
 			});
 
 			it('should not set invalid array items', () => {
-				(state.arrayWithDefaultAndNullableAndOptional as any) = [123, true, {}];
+				// @ts-expect-error
+				state.arrayWithDefaultAndNullableAndOptional = [123, true, {}];
 				expect(state.arrayWithDefaultAndNullableAndOptional).toEqual(['test']);
 			});
 		});

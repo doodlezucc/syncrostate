@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { syncroState, y } from '../../lib/index.js';
 
 const state = syncroState({
@@ -61,26 +61,31 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.enum = 'd';
 				expect(state.enum).toBe('a');
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.enum = null;
 				expect(state.enum).toBe('a');
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.enum = undefined;
 				expect(state.enum).toBe('a');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.enum = 123;
 				expect(state.enum).toBe('a');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.enum = {};
 				expect(state.enum).toBe('a');
 			});
@@ -97,6 +102,7 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.nullableEnum = 'd';
 				expect(state.nullableEnum).toBe('a');
 			});
@@ -107,16 +113,19 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.nullableEnum = undefined;
 				expect(state.nullableEnum).toBe('a');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.nullableEnum = 123;
 				expect(state.nullableEnum).toBe('a');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.nullableEnum = {};
 				expect(state.nullableEnum).toBe('a');
 			});
@@ -133,11 +142,13 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.optionnalEnum = 'd';
 				expect(state.optionnalEnum).toBe('a');
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.optionnalEnum = null;
 				expect(state.optionnalEnum).toBe('a');
 			});
@@ -148,11 +159,13 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.optionnalEnum = 123;
 				expect(state.optionnalEnum).toBe('a');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.optionnalEnum = {};
 				expect(state.optionnalEnum).toBe('a');
 			});
@@ -169,6 +182,7 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.nullableOptionnalEnum = 'd';
 				expect(state.nullableOptionnalEnum).toBe('a');
 			});
@@ -184,11 +198,13 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.nullableOptionnalEnum = 123;
 				expect(state.nullableOptionnalEnum).toBe('a');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.nullableOptionnalEnum = {};
 				expect(state.nullableOptionnalEnum).toBe('a');
 			});
@@ -205,26 +221,31 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.enumWithDefault = 'd';
 				expect(state.enumWithDefault).toBe('b');
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.enumWithDefault = null;
 				expect(state.enumWithDefault).toBe('b');
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.enumWithDefault = undefined;
 				expect(state.enumWithDefault).toBe('b');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.enumWithDefault = 123;
 				expect(state.enumWithDefault).toBe('b');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.enumWithDefault = {};
 				expect(state.enumWithDefault).toBe('b');
 			});
@@ -241,11 +262,13 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndOptional = 'd';
 				expect(state.enumWithDefaultAndOptional).toBe('b');
 			});
 
 			it('should not set the value to null', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndOptional = null;
 				expect(state.enumWithDefaultAndOptional).toBe('b');
 			});
@@ -256,11 +279,13 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndOptional = 123;
 				expect(state.enumWithDefaultAndOptional).toBe('b');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndOptional = {};
 				expect(state.enumWithDefaultAndOptional).toBe('b');
 			});
@@ -277,6 +302,7 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullable = 'd';
 				expect(state.enumWithDefaultAndNullable).toBe('b');
 			});
@@ -287,16 +313,19 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to undefined', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullable = undefined;
 				expect(state.enumWithDefaultAndNullable).toBe('b');
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullable = 123;
 				expect(state.enumWithDefaultAndNullable).toBe('b');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullable = {};
 				expect(state.enumWithDefaultAndNullable).toBe('b');
 			});
@@ -313,6 +342,7 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to an invalid enum value', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullableAndOptional = 'd';
 				expect(state.enumWithDefaultAndNullableAndOptional).toBe('b');
 			});
@@ -328,11 +358,13 @@ describe('EnumProxy', () => {
 			});
 
 			it('should not set the value to a number', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullableAndOptional = 123;
 				expect(state.enumWithDefaultAndNullableAndOptional).toBe('b');
 			});
 
 			it('should not set the value to an object', () => {
+				// @ts-expect-error
 				state.enumWithDefaultAndNullableAndOptional = {};
 				expect(state.enumWithDefaultAndNullableAndOptional).toBe('b');
 			});
