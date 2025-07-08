@@ -6,7 +6,7 @@ import { DateValidator, type DateSchema } from './date.js';
 import { EnumValidator, type EnumSchema } from './enum.js';
 import { StringValidator, type StringSchema } from './string.js';
 import { ObjectValidator, type ObjectSchema, type ObjectShape } from './object.js';
-import { RichTextValidator, type RichTextSchema } from './richtext.js';
+import { RichTextValidator } from './richtext.js';
 import { NumberValidator, type NumberSchema } from './number.js';
 import { SetValidator, type SetSchema } from './set.js';
 import type { State } from '$lib/proxys/syncroState.svelte.js';

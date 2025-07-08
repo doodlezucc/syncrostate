@@ -229,7 +229,7 @@ export class SyncedObject {
 	};
 
 	toJSON = () => {
-		return Object.entries(this.validator.$schema.shape).reduce((acc, [key, validator]) => {
+		return Object.entries(this.validator.$schema.shape).reduce((acc, [key]) => {
 			const value = this.syncroStates[key]?.value;
 			if (value !== undefined) {
 				Object.assign(acc, { [key]: value });

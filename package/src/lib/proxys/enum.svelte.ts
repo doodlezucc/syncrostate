@@ -40,7 +40,13 @@ export class SyncedEnum<T extends string | number = string | number> extends Bas
 		state: State;
 	}) {
 		super(opts);
-		this.firstValue = opts.validator.$schema.values.values().next().value;
+
+		const firstValue = opts.validator.$schema.values.values().next().value;
+		if (firstValue === undefined) {
+			throw new Error('Enum schema must have at least one value');
+		}
+
+		this.firstValue = firstValue;
 		this.validator = opts.validator;
 	}
 }

@@ -18,6 +18,7 @@ export type NonRecursiveType =
 	| Date
 	| symbol
 	| bigint
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 	| Function
 	| (new (...arguments_: any[]) => unknown);
 

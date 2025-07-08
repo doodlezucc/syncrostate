@@ -1,5 +1,5 @@
 import { type BaseSchema, isValidNullOrUndefined } from './base.js';
-import type { InferSchemaType, SchemaOutput, Validator } from './schema.js';
+import type { InferSchemaType, Validator } from './schema.js';
 
 export type MapSchema<T extends Validator> = BaseSchema<Map<string, InferSchemaType<T>>> & {
 	kind: 'map';
@@ -59,7 +59,7 @@ export class MapValidator<
 
 	coerce(value: any): Map<string, InferSchemaType<T>> | null {
 		if (value instanceof Map) {
-			const entries = Array.from(value.entries()).filter(([key, value]) =>
+			const entries = Array.from(value.entries()).filter(([, value]) =>
 				this.$schema.shape.isValid(value)
 			);
 			if (entries.length > 0) {

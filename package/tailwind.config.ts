@@ -10,5 +10,8 @@ export default {
 	daisyui: {
 		themes: ['black']
 	},
+	// @ts-expect-error "import" doesn't work here
+	// The appropriate fix would be a Vite specific tailwind config.
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
 	plugins: [typography, require('daisyui')]
 } as Config;

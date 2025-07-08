@@ -3,10 +3,10 @@ import type { ArrayValidator } from '../schemas/array.js';
 import { createSyncroState, type State, type SyncroStates } from './syncroState.svelte.js';
 import type { SyncedContainer } from './common.js';
 
-import { isArrayNull, logError, observeArray, propertyToNumber, setArrayToNull } from '../utils.js';
+import { isArrayNull, logError, observeArray, propertyToNumber } from '../utils.js';
 import { NULL_ARRAY } from '$lib/constants.js';
 
-export class SyncedArray<T extends any = any> {
+export class SyncedArray<T = any> {
 	state: State;
 	validator: ArrayValidator<any>;
 	yType: Y.Array<any>;
@@ -225,7 +225,7 @@ export class SyncedArray<T extends any = any> {
 				}
 				return undefined;
 			},
-			ownKeys: (target) => {
+			ownKeys: () => {
 				const keys: string[] = [];
 				for (let i = 0; i < this.yType.length; i++) {
 					keys.push(i + '');
@@ -370,7 +370,7 @@ export class SyncedArray<T extends any = any> {
 		push: (...items: T[]) => {
 			this.state.transaction(() => {
 				this.syncroStates.push(
-					...items.map((item, index) => {
+					...items.map((item) => {
 						return createSyncroState({
 							key: this.yType.length,
 							validator: this.validator.$schema.shape,

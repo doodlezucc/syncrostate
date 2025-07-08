@@ -108,7 +108,7 @@ export const logError = (...args: any[]) => {
 };
 
 export const isInitialized = ({ yType }: { yType: Y.AbstractType<any> }) => {
-	// @ts-ignore
+	// @ts-expect-error This property is added by syncroState
 	return yType.doc?.initialized;
 };
 

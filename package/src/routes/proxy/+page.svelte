@@ -1,7 +1,6 @@
 <svelte:options runes />
 
 <script lang="ts">
-	import { SvelteMap } from 'svelte/reactivity';
 	import Test from './Test.svelte';
 	import { createProxy } from './proxy.svelte.js';
 

@@ -1,19 +1,9 @@
 <script lang="ts">
 	import { syncroState } from '$lib/proxys/syncroState.svelte.js';
 	import { y } from '$lib/schemas/schema.js';
-	import hljs from 'highlight.js';
-	import 'highlight.js/styles/github-dark.css';
-	import javascript from 'highlight.js/lib/languages/json';
 	import { createClient } from '@liveblocks/client';
 	import { onMount } from 'svelte';
 	import { Inspect } from 'svelte-inspect-value';
-
-	hljs.registerLanguage('javascript', javascript);
-
-	const highlight = (node: HTMLElement, json: string) => {
-		const highlighted = hljs.highlight(json, { language: 'json' }).value;
-		node.innerHTML = highlighted;
-	};
 
 	const client = createClient({
 		publicApiKey: 'pk_prod_ytItHgLSil9pFkJELGPI7yWptk_jNMifKfv3JhWODRGX2vK3hrt-3oNzDkrc1kcx'
@@ -65,8 +55,6 @@
 	});
 
 	const docState = document.getState!();
-
-	let friends = $state(['John']);
 
 	const updateName = () => {
 		document.name = 'Alice' + Math.floor(Math.random() * 100);
@@ -165,8 +153,6 @@
 			name: docState.presence.me?.name === 'John' ? 'Alice' : 'John'
 		};
 	};
-
-	const json = $derived(JSON.stringify(document, null, 2));
 </script>
 
 {#if document.getState?.().synced}

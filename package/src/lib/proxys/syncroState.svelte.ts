@@ -41,7 +41,7 @@ export type SyncroStates =
 const safeSetContext = (key: string, value: any) => {
 	try {
 		setContext(key, value);
-	} catch (e) {
+	} catch {
 		//
 	}
 };
@@ -87,7 +87,7 @@ export const syncroState = <T extends ObjectShape, P extends ObjectShape>({
 	const stateMap = doc.getMap('$state');
 	const undoManager = new Y.UndoManager(stateMap);
 	const transactionKey = new TRANSACTION_KEY();
-	let state = $state<State>({
+	const state = $state<State>({
 		synced: sync ? false : true,
 		initialized: false,
 		awareness,
@@ -112,10 +112,10 @@ export const syncroState = <T extends ObjectShape, P extends ObjectShape>({
 	safeSetContext(CONTEXT_KEY, state);
 
 	const syncroStateProxy = new SyncedObject({
-		// @ts-ignore
+		// @ts-expect-error "parent" is only partially implemented here
 		parent: {
 			// TODO: does this need to be fixed ? Is this even used a some point ? idk
-			deleteProperty(target, pArg) {
+			deleteProperty() {
 				logError('Not allowed');
 				return true;
 			}

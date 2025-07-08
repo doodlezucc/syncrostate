@@ -1,7 +1,7 @@
-import { BaseValidator, type BaseSchema } from './base.js';
+import { type BaseSchema } from './base.js';
 import type { PrimitiveValidator } from './schema.js';
 
-type SetType<T extends PrimitiveValidator> = T['$schema'] extends BaseSchema<infer T> ? T : never;
+type SetType<V extends PrimitiveValidator> = V['$schema'] extends BaseSchema<infer T> ? T : never;
 
 export type SetSchema<T extends PrimitiveValidator> = BaseSchema<Set<SetType<T>>> & {
 	kind: 'set';

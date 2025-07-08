@@ -27,7 +27,7 @@ export class DateValidator<
 	private isStringADate(value: string): boolean {
 		try {
 			return !isNaN(new Date(value).getTime());
-		} catch (error) {
+		} catch {
 			return false;
 		}
 	}

@@ -8,7 +8,7 @@ export type ArraySchema<T extends Validator> = BaseSchema<ArrayType<T>[]> & {
 	max?: number;
 };
 
-type ArrayType<T extends Validator> = T['$schema'] extends BaseSchema<infer T> ? T : never;
+type ArrayType<V extends Validator> = V['$schema'] extends BaseSchema<infer T> ? T : never;
 
 export class ArrayValidator<
 	T extends Validator,

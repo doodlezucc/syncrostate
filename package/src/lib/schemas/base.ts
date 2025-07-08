@@ -27,12 +27,14 @@ export function isValidNullOrUndefined(this: { $schema: BaseSchema<any> }, value
 	return true;
 }
 
+// TODO: This could probably be made abstract?
 export class BaseValidator<
 	S extends BaseSchema<any>,
 	O extends boolean = false,
 	N extends boolean = false
 > {
 	$schema: S;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	isValid = (value: any) => {
 		//
 	};
@@ -40,13 +42,15 @@ export class BaseValidator<
 	isValidNullOrUndefined = isValidNullOrUndefined.bind(this);
 
 	// Convert data to string format for display/storage
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	stringify = (value: any) => {
 		return '';
 	};
 
 	//  Convert a string to the correct type.
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	coerce(value: any): S extends BaseSchema<infer T> ? T | null : any {
-		// @ts-expect-error
+		// @ts-expect-error Default implementation
 		return null;
 	}
 
