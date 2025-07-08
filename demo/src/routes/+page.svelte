@@ -1,16 +1,9 @@
 <script>
 	import { browser } from '$app/environment';
 	import Canvas from '$lib/canvas.svelte';
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import Usage from './Usage.svelte';
 	import Features from './Features.svelte';
-
-	let visible = false;
-
-	onMount(() => {
-		visible = true;
-	});
 
 	let { data } = $props();
 

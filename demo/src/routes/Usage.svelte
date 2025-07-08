@@ -18,7 +18,7 @@
 	<div class="container mx-auto px-6">
 		<h2 class="mb-12 mt-0 text-center text-2xl font-bold">Usage</h2>
 
-		<div class="mockup-code bg-primary text-primary-content text-xs">
+		<div class="mockup-code bg-primary text-xs text-primary-content">
 			<pre use:highlight>{snippet}</pre>
 		</div>
 	</div>

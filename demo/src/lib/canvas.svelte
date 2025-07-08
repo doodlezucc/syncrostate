@@ -179,6 +179,7 @@
 			}}
 		>
 			<Layer>
+				<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 				{#each document.nodes as node, i}
 					<Shape bind:node={document.nodes[i]} />
 				{/each}
